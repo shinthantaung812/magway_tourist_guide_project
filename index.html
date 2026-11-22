@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAGWAY: Landmarks &amp; Festivals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Shippori+Mincho:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="#top">Magway</a>
+    <nav class="actions" aria-label="Main actions">
+      <a class="btn btn-ghost" href="#admin">Admin Group</a>
+      <a class="btn btn-ghost" href="#contact">Contact</a>
+      <a class="btn btn-solid" href="#subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Where sacred pagodas meet timeless river views.</h1>
+      <p>Scared pagodas, golden sunsets, and vibrant festivals. Explore the landmarks and traditions that define Magway.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-solid" href="#landmarks">See landmarks</a>
+        <a class="btn btn-ghost-light" href="#festivals">See festivals</a>
+      </div>
+    </section>
+
+    <section id="landmarks" class="section">
+      <h2>Iconic landmarks</h2>
+      <div class="grid" data-grid="landmarks"></div>
+    </section>
+
+    <section id="festivals" class="section section-tint">
+      <h2>Local festivals</h2>
+      <div class="grid" data-grid="festivals"></div>
+    </section>
+
+    <section id="login" class="login">
+      <div class="login-overlay"></div>
+      <div class="login-inner">
+        <div class="login-copy">
+          <h2>Welcome back</h2>
+          <p>Sign in to save landmarks, plan festival visits and get date reminders.</p>
+        </div>
+        <form class="login-form" id="loginForm" novalidate>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="At least 8 characters" autocomplete="current-password"
+            minlength="8" required>
+          <button type="submit" class="btn btn-solid btn-block">Sign in</button>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <p id="admin">Admin Group: manage listings and events.</p>
+    <p id="subscribe">Subscribe for festival dates in your inbox. Contact: hello@magway-guide.example</p>
+  </footer>
+
+  <dialog id="detailDialog" aria-labelledby="dTitle">
+    <img id="dImg" alt="">
+    <div class="dialog-body">
+      <h3 id="dTitle"></h3>
+      <p id="dMeta" class="meta"></p>
+      <p id="dText"></p>
+      <button class="btn btn-solid" id="dClose" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <script>
+    const U = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=70`;
+    const data = {
+      landmarks: [
+        { t: "Magway Myathalun Pagodas", img: "myathalon.jpg", d: "The golden charm of the Ayeyarwady, rich in heritage.", meta: "Magway MyaThaLon", more: "Scared pagodas, golden sunsets, and vibrant festivals. Explore the landmarks and traditions that define Magway." },
+        { t: "Ayeyarwady Bridge Magway", img: "ayeyarwady_bridge.jpg", d: "A majestic bridge linking Magway and Minbu across the Ayeyarwady.", meta: "Ayeyarwaddy River, Magway-Minbu", more: "Standing over the broad waters of the Ayeyarwady River, the Magway Bridge connects both riverbanks and offers peaceful views of boats, river breezes, and golden dusk skies." },
+        { t: "Mann Shwesettaw ", img: "ManShweSattThaw.jpg", d: "Sacred footprint shrine and renowned annual festival by the Mon stream.", meta: "Minbu District - Near Magway", more: "Located along the peaceful Mon stream near Magway, Mann Shwe Settaw is famous for its sacred footprint shrines and its vibrant annual festival that draws visitors from across Myanmar." },
+        { t: "Magway Strand Road ", img: "kannarlann.jpg", d: "Lively riverside promenade for evening breezes, walks, and local flavors.", meta: "Ayeyarwady Riverbank · Magway", more: "Stretching along the Ayeyarwady River in Magway, the Strand Road is a favorite evening spot for walking, exercising, enjoying cool river breezes, and relaxing at local eateries." }
+      ],
+      festivals: [
+        { t: "Mann Shwe Settaw Festival", img: "manshwesettaw.jpg", d: "Vibrant seasonal pilgrimage drawing visitors with festive stalls and devotion.", meta: "5th Waxing of Tabodwe – Myanmar New Year (Jan/Feb – Mid-April)", more: "Held annually from the 5th waxing day of Tabodwe through Myanmar New Year along the Mon stream, Mann Shwe Settaw Festival brings together pilgrims, traditional stalls, and lively seasonal celebrations." },
+        { t: "Mya Tha Lun Pagoda Festival", img: "myathalon_festival.jpg", d: "Lively pagoda celebration and traditional festivities along the riverbank.", meta: "Thadingyut Period (Late Sep – Oct/Nov) · Magway", more: "Held annually around the Thadingyut season at the historic Mya Tha Lun Pagoda overlooking the Ayeyarwady River, the festival highlights local devotion, light offerings, and vibrant community gatherings in Magway." },
+        { t: "Thadingyut Festival of Lights", img: "festival.png", d: "Glowing lanterns, candles, and warm community celebrations across town.", meta: "Full Moon of Thadingyut (October) · Magway", more: "Celebrated around the Thadingyut full moon in October, this festival of lights fills pagodas, streets, and homes in Magway with glowing candles, lanterns, and warm community spirit." },
+        { t: "Thingyan Water Festival", img: "Thingyan.jpg", d: "Joyful New Year water celebrations, merit-making, and festive cheer across Magway.", meta: "Mid-April (Around Apr 13–17) · Magway", more: "Celebrated every mid-April to welcome the Myanmar New Year, Thingyan in Magway brings joyful water festivities, traditional performances, charity feasts, and peaceful merit-making along the riverbank." }
+      ]
+    };
+
+    const dlg = document.getElementById("detailDialog");
+    const card = (item, kind) => `
+      <article class="card">
+        <div class="card-img"><img src="${(item.img)}" alt="${item.t}" loading="lazy" onerror="this.remove()"></div>
+        <div class="card-body">
+          <h3>${item.t}</h3>
+          <p>${item.d}</p>
+          <button class="btn btn-outline" type="button" data-kind="${kind}" data-i="${data[kind].indexOf(item)}">Details</button>
+        </div>
+      </article>`;
+
+    document.querySelectorAll("[data-grid]").forEach(g => {
+      const k = g.dataset.grid;
+      g.innerHTML = data[k].map(i => card(i, k)).join("");
+    });
+
+    document.addEventListener("click", e => {
+      const b = e.target.closest("[data-kind]");
+      if (!b) return;
+      const item = data[b.dataset.kind][b.dataset.i];
+      dImg.src = (item.img); dImg.alt = item.t;
+      dTitle.textContent = item.t; dMeta.textContent = item.meta; dText.textContent = item.more;
+      dlg.showModal();
+    });
+    dClose.addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const f = e.target, msg = document.getElementById("formMsg");
+      if (!f.checkValidity()) { msg.textContent = "Enter a valid email and a password of at least 8 characters."; msg.className = "form-msg error"; return; }
+      msg.textContent = "Signed in. Demo only: connect this form to your backend."; msg.className = "form-msg ok";
+    });
+  </script>
+</body>
+
+</html>
